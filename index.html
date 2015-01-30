@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>ListaApp</title>
+    </head>
+    <body>
+        <div ng-controller="ListaController">
+        <div class="wrap960">
+            
+            <div class="panel panel-default">
+
+              <div class="panel-heading"><img src="icon.png" alt="" style="height:40px;"> Cadastro de produtos</div>
+              <div class="panel-body">
+                <form name="form" role="form" class="form-add" ng-submit="salvaItem()">
+
+                     <div class="form-group">
+                        <label for="nome">Nome do Produto</label>
+                        <input type="text" class="form-control" id="nome" required ng-model="lista.nome"  placeholder="Nome do prduto">
+                      </div>
+                      <div class="form-group">
+                        <label for="valor">Valor</label>
+                        <input type="text" class="form-control" required ng-model="lista.valor" id="valor" placeholder="Valor">
+                      </div>
+                      <div class="form-group">
+                        <label for="qtd">Quantidade</label>
+                        <input type="number" class="form-control" required ng-model="lista.qtd" id="qtd"  placeholder="Quantidade">
+                      </div>
+                      <div class="form-group">
+                        <label for="total">Valor Total</label>
+                        <input type="text" class="form-control" ng-model="lista.total"  disabled ng-value="Vtotal()"> 
+                         
+                        
+                      </div>
+                        <button type="submit" ng-disabled="form.$invalid"  class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> <b>  Add Produto</b></button>
+                </form>
+              </div>
+            </div>
+
+
+             <div class="panel panel-default">
+              <div class="panel-heading"> <img src="icon.png" alt="" style="height:40px;"> Lista de produtos</div>
+              <div class="panel-body">
+                        <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Produto</th>
+            <th>Valor</th>
+            <th>QTD</th>
+            <th>Total</th>
+            <th>Opções</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="produto in lista.item">
+                <td>{{produto.iditem}}</td>
+                <td>{{produto.nome}}</td>
+                <td>{{produto.valor}}</td>
+                <td>{{produto.qtd}}</td>
+                <td>{{produto.total}}</td>
+                <td><div class="btn-group" role="group" aria-label="...">
+  <a href="#/del/{{produto.iditem}}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+  <a href="#/{{produto.iditem}}" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
+</div></td>
+           
+          </tr>
+          <tr>
+          <td colspan="4">TOTAL</td>
+          <td>{{somaTotal()}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>         
+              </div>
+            </div>
+        </div>
+            
+        </div>
+        
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/angular-animate.js"></script>
+        <script type="text/javascript" src="js/angular-route.js"></script>
+        <script type="text/javascript" src="js/angular-sanitize.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        
+
+    </body>
+</html>
