@@ -42,8 +42,11 @@
               <div class="panel-heading"><img src="icon.png" alt="" style="height:40px;"> Cadastro de produtos</div>
               <div class="panel-body">
                 <form name="form" role="form" class="form-add" ng-submit="salvaItem()">
-
-                     <div class="form-group">
+	
+                    
+                        <input type="hidden" class="form-control" id="iditem" required ng-model="lista.iditem" >
+                  
+                      <div class="form-group">
                         <label for="nome">Nome do Produto</label>
                         <input type="text" class="form-control" id="nome" required ng-model="lista.nome"  placeholder="Nome do prduto">
                       </div>
@@ -61,7 +64,8 @@
                          
                         
                       </div>
-                        <button type="submit" ng-disabled="form.$invalid"  class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> <b>  Add Produto</b></button>
+                        <button type="submit" style="margin-left: 5px;" ng-disabled=" (lista.nome && lista.valor && lista.qtd) ?  false : true"  class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> <b>  Add Produto</b></button>
+                        <button ng-click="reset()" class="btn btn-danger pull-right" ng-disabled=" (lista.nome || lista.valor || lista.qtd) ?  false : true"> <i class="glyphicon glyphicon-remove"></i> <b> LIMPAR</b> </button>
                 </form>
               </div>
             </div>
@@ -90,10 +94,12 @@
                 <td>{{produto.valor}}</td>
                 <td>{{produto.qtd}}</td>
                 <td>{{produto.total}}</td>
-                <td><div class="btn-group" role="group" aria-label="...">
-  <a href="#/del/{{produto.iditem}}" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-  <a href="#/{{produto.iditem}}" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></button>
-</div></td>
+                <td>
+	                <div class="btn-group btn-xs" role="group" aria-label="...">
+					  <a href="javascript:;" ng-click="delete(produto.iditem)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
+					  <a href="javascript:;" ng-click="edit(produto)" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-pencil"></i></a>
+					</div>
+				</td>
            
           </tr>
           <tr>
